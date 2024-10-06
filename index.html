@@ -1,32 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Consulta LexML Simples</title>
-  <style>
-    body { font-family: sans-serif; }
-    #resultado { margin-top: 20px; white-space: pre-wrap; }
-  </style>
-</head>
 <body>
-  <h1>Consulta LexML Simples</h1>
-  <input type="text" id="termo" placeholder="Digite o termo de pesquisa">
-  <button onclick="pesquisar()">Pesquisar</button>
-  <div id="resultado"></div>
 
-  <script>
-    function pesquisar() {
-      var termo = document.getElementById("termo").value;
-      var url = "https://www.lexml.gov.br/sru/sru.php?operation=searchRetrieve&version=1.2&query=" + encodeURIComponent(termo) + "&startRecord=1&maximumRecords=10&recordSchema=lexml&recordPacking=xml";
+<script>
+fetch("https://www.lexml.gov.br/busca/SRU?operation=searchRetrieve&version=1.1&query=teste&maximumRecords=1&recordSchema=dc", { mode: 'cors' })
+  .then(response => response.text())
+  .then(xml => console.log(xml))
+  .catch(error => console.error("Erro:", error));
+</script>
 
-      fetch(url)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("resultado").innerText = data;
-        })
-        .catch(error => {
-          document.getElementById("resultado").innerText = "Erro na consulta: " + error;
-        });
-    }
-  </script>
 </body>
 </html>
