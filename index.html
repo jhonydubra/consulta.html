@@ -16,7 +16,7 @@
   <script>
     function pesquisar() {
       var termo = document.getElementById("termo").value;
-      var url = "https://www.lexml.gov.br/sru/sru.php?operation=searchRetrieve&version=1.2&query=" + termo + "&startRecord=1&maximumRecords=10&recordSchema=lexml&recordPacking=xml";
+      var url = "https://www.lexml.gov.br/sru/sru.php?operation=searchRetrieve&version=1.2&query=" + encodeURIComponent(termo) + "&startRecord=1&maximumRecords=10&recordSchema=lexml&recordPacking=xml";
 
       fetch(url)
         .then(response => response.text())
